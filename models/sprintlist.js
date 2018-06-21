@@ -30,7 +30,7 @@ module.exports.addList = (newList, callback) => {
 }
 
 
-module.exports.deleteListById = (id, callback) => {
-	let query = {_id: id};
-	SprintList.remove(query, callback);
+module.exports.deleteList = (callback) => {
+	//let query = {_id: id};
+	SprintList.remove(callback);
 }

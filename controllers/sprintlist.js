@@ -48,11 +48,11 @@ router.post('/', (req, res, next) => {
 });
 
 
-//DELETE HTTP method to /sprintlist. Here, we pass in a params which is the object id.
-router.delete('/:id', (req, res, next) => {
-    let id = req.params.id;
-    console.log(id);
-    sprintlist.deleteListById(id, (err, list) => {
+//DELETE HTTP method to /sprintlist.
+router.delete('/', (req, res) => {
+    //let id = req.params.id;
+    //console.log(id);
+    sprintlist.deleteList((err, list) => {
         if (err) {
             res.json({ success: false, message: `Failed to delete the list. Error: ${err}` });
         }
