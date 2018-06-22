@@ -1,33 +1,53 @@
-<div class="container">
-  <!-- Table starts here -->
-  <div class="row grid-container">
-    <div class="col-md-10">
-      <table id="table" class="table table-hover table-mc-light-blue">
-        <thead>
-          <tr class="align-center">
-            <th class="align-center">Length</th>
-            <th class="align-center">Status</th>
-            <th class="align-center">Date</th>
-            <th class="align-center">Start</th>
-            <th class="align-center">Finish</th>
-            <th class="align-center">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let list of sprintlists">
-            <td>{{list.name}}</td>
-            <td>{{list.status}}</td>
-            <td>{{list.createdAt}}</td>
-            <td>{{list.startedAt}}</td>
-            <td>{{list.finishedAt}}</td>
-            <td>{{list.description}}</td>
+<div class="bs-docs-example">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a routerLink="/sprints" routerLinkActive="active" data-toggle="tab">Past Sprints</a>
+        </li>
+        <li><a routerLink="/newsprint" routerLinkActive="active" data-toggle="tab">New Sprint</a>
+        </li>
+        
+    </ul>
+    
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="past">
+            <div class="row grid-container">
+                <div class="col-md-10">
+                  <table id="table" class="table table-hover table-mc-light-blue">
+                    <thead>
+                      <tr class="align-center">
+                        <th class="align-center">Length</th>
+                        <th class="align-center">Status</th>
+                        <th class="align-center">Date</th>
+                        <th class="align-center">Start</th>
+                        <th class="align-center">Finish</th>
+                        <th class="align-center">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let list of sprintlists">
+                        <td>{{list.name}}</td>
+                        <td>{{list.status}}</td>
+                        <td>{{list.createdAt}}</td>
+                        <td>{{list.startedAt}}</td>
+                        <td>{{list.finishedAt}}</td>
+                        <td>{{list.description}}</td>
+            
+                      </tr>
+                    </tbody>
+            
+                  </table>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+            
+                  <button type="button" class="btn btn-danger" (click)="deleteList(); $event.stopPropagation();">Delete</button>
+                </div>
+              </div>
+        </div>
+        <div class="tab-pane fade" id="newsprint">
+            
+        </div>
 
-          </tr>
-        </tbody>
-
-      </table>
-
-      <button type="button" class="btn btn-danger" (click)="deleteList(); $event.stopPropagation();">Delete</button>
+        
     </div>
-  </div>
 </div>

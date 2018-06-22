@@ -19,7 +19,7 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">
+                    <a routerLink="/sprints" routerLinkActive="active">
                         <span class="glyphicon glyphicon-log-in"></span> Login</a>
                 </li>
             </ul>
@@ -30,16 +30,18 @@
         <div class="jumbotron" style="width: 400px">
             <h1 style="margin-bottom: 1em;">About</h1>
             <p style="margin-bottom: 1em;">Sprint is a minimalist desktop time management application inspired by the
-                <a _ngcontent-c3="" href="https://en.wikipedia.org/wiki/Pomodoro_Technique">Pomodoro Technique</a>. </p>
+                <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">Pomodoro Technique</a>. </p>
             <p style="margin-bottom: 1em;">Choose a sprint length, enter a brief description of the activity, and get things done.</p>
             <p style="margin-bottom: 1em;">Preferred browser:
                 <a href="https://www.google.com/chrome/">Chrome</a>. </p>
             <p>
                 <span style="text-decoration: underline; cursor: pointer">Terms and conditions</span>. </p>
         </div>
+        <router-outlet></router-outlet>
 
     </div>
 
 </body>
 
 </html>
+

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AddNewSprintComponent } from './add-new-sprint/add-new-sprint.component';
 import { ViewPastSprintComponent } from './view-past-sprint/view-past-sprint.component';
 import { SprintListService } from './services/sprint-list.service';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SprintListService } from './services/sprint-list.service';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [SprintListService],
   bootstrap: [AppComponent]
