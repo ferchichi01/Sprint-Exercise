@@ -145,6 +145,7 @@ export class PromodorosprinterComponent implements OnInit {
         finishedAt: new Date(Date.now())
       }
       this.onSubmit();
+      this.router.navigate(['/sprints']);
 
 
     }
