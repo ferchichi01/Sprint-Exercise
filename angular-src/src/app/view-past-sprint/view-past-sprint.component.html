@@ -1,53 +1,146 @@
-<div class="bs-docs-example">
-    <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a routerLink="/sprints" routerLinkActive="active" data-toggle="tab">Past Sprints</a>
-        </li>
-        <li><a routerLink="/newsprint" routerLinkActive="active" data-toggle="tab">New Sprint</a>
-        </li>
-        
-    </ul>
-    
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="past">
-            <div class="row grid-container">
-                <div class="col-md-10">
-                  <table id="table" class="table table-hover table-mc-light-blue">
-                    <thead>
-                      <tr class="align-center">
-                        <th class="align-center">Length</th>
-                        <th class="align-center">Status</th>
-                        <th class="align-center">Date</th>
-                        <th class="align-center">Start</th>
-                        <th class="align-center">Finish</th>
-                        <th class="align-center">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let list of sprintlists">
-                        <td>{{list.name}}</td>
-                        <td>{{list.status}}</td>
-                        <td>{{list.createdAt}}</td>
-                        <td>{{list.startedAt}}</td>
-                        <td>{{list.finishedAt}}</td>
-                        <td>{{list.description}}</td>
-            
-                      </tr>
-                    </tbody>
-            
-                  </table>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-            
-                  <button type="button" class="btn btn-danger" (click)="deleteList(); $event.stopPropagation();">Delete</button>
-                </div>
-              </div>
-        </div>
-        <div class="tab-pane fade" id="newsprint">
-            
-        </div>
+<div class="staticTabs">
 
-        
-    </div>
+  <tabset #staticTabs>
+    <tab heading="Pasts Sprint">
+
+      <div class="inputSearch">
+        <input type="text" class="form-control" placeholder="Filter by length, status, date or description">
+      </div>
+      <div class="row grid-container">
+        <div class="col-md-10">
+
+
+          <table class="table table-hover table-responsive-md mb-0">
+            <thead>
+              <tr class="align-center">
+                <th>Length</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Start</th>
+                <th>Finish</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of sprintlists">
+                <td>{{list.name}}</td>
+                <td>{{list.status}}</td>
+                <td>{{list.createdAt}}</td>
+                <td>{{list.startedAt}}</td>
+                <td>{{list.finishedAt}}</td>
+                <td>{{list.description}}</td>
+
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+        <div class="d-flex justify-content-center">
+
+            <!--Pagination -->
+            <nav class="my-4 pt-2">
+                <ul class="pagination pagination-circle pg-purple mb-0">
+    
+                    <!--First-->
+                    <li class="page-item disabled clearfix d-none d-md-block"><a class="page-link">First</a></li>
+    
+                    <!--Arrow left-->
+                    <li class="page-item disabled">
+                        <a class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    </li>
+    
+                    <!--Numbers-->
+                    <li class="page-item active"><a class="page-link">1</a></li>
+                    <li class="page-item"><a class="page-link">2</a></li>
+                    <li class="page-item"><a class="page-link">3</a></li>
+                    <li class="page-item"><a class="page-link">4</a></li>
+                    <li class="page-item"><a class="page-link">5</a></li>
+    
+                    <!--Arrow right-->
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    </li>
+    
+                    <!--First-->
+                    <li class="page-item clearfix d-none d-md-block"><a class="page-link">Last</a></li>
+    
+                </ul>
+            </nav>
+            <!--/Pagination -->
+    
+        </div>
+      </div>
+      <div class="button-delete">
+        <button type="button" class="button-content" (click)="deleteList(); $event.stopPropagation();">Delete All</button>
+      </div>
+    </tab>
+    <tab heading="New Sprint">
+      <section class="form-light">
+
+        <!--Form without header-->
+        <form action=""  (submit)="onAddPost(postForm)"  #postForm="ngForm">
+
+          <div class="card-body mx-4">
+
+            <!--Header-->
+            <div class="text-center">
+              <h3 class="pink-text mb-5">
+                <strong>Start a Sprint</strong>
+              </h3>
+            </div>
+
+            <!--Body-->
+            <div class="md-form">
+              <label class="grey-text">Choose a length*</label>
+              <select class="form-control" required name="length" [(ngModel)]="selectedValue">
+                <option *ngFor="let sp of sprints" [value]="sp.value">{{ sp.viewValue }}</option>
+              </select>
+
+            </div>
+
+            <div class="md-form pb-3">
+              <label class="grey-text">Description</label>
+              <textarea class="form-control" ngModel #title="ngModel" name="description" required></textarea>
+              <small id="emailHelp" class="form-text text-muted">What will you be doing</small>
+              <div class="form-check my-4">
+                <input class="form-check-input" type="checkbox" id="defaultCheck12">
+                <label for="defaultCheck12" class="grey-text">Notify when completed</label>
+              </div>
+            </div>
+
+            <!--Grid row-->
+            <div class="row d-flex align-items-center mb-4">
+
+              <!--Grid column-->
+              <div class="col-md-3 col-md-6 text-center">
+                <button type="submit" class="btn btn-primary btn-block btn-rounded z-depth-1" [disabled]="!postForm.valid">Start</button>
+              </div>
+              <!--Grid column-->
+
+
+
+            </div>
+            <!--Grid row-->
+          </div>
+
+        </form>
+        <!--/Form without header-->
+
+      </section>
+
+
+    </tab>
+
+  </tabset>
+
+  <footer>
+    <p>Logged in as {{ username }} </p>
+  </footer>
 </div>

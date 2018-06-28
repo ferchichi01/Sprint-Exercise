@@ -1,4 +1,4 @@
-//Require mongoose package
+
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
     
@@ -12,14 +12,14 @@ const SprintlistSchema = new Schema({
     notify: { type: Boolean, default: false, required: true},
     user: { type: String, required: true, trim: true },
     createdAt: { type: Date, default: Date.now, required: true },
-    startedAt: { type: String, required: true, trim: true },
-    finishedAt: { type: String, required: true, trim: true },
+    startedAt: { type: Date, default: Date.now, required: true},
+    finishedAt: { type: Date, required: true },
 });
 
 const SprintList = module.exports = mongoose.model('SprintList', SprintlistSchema);
 
 
-//BucketList.find() returns all the lists
+
 module.exports.getAllLists = (callback) => {
     SprintList.find(callback);
 }

@@ -1,0 +1,275 @@
+body {
+    margin: 0 auto;
+    padding: 0;
+    font-family: 'Oxygen', sans-serif;
+    background-color: #ffffff;
+  
+    #spinner, no-script {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+  }
+  .dialog-show[_ngcontent-c9] {
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -7.5em;
+    margin-top: 6em;
+    width: 15em;
+    height: 8em;
+    opacity: 1;
+    z-index: 3;
+    border-radius: 2px;
+  }
+  
+  $red: #ffffff;
+  
+  $small: 480px;
+  $med: 768px;
+  $large: 1020px;
+  
+  @mixin flex($align: left) {
+    display: flex;
+    justify-content: $align;
+    align-items: center;
+  }
+  
+  @mixin circle($diameter) {
+    height: $diameter;
+    width: $diameter;
+    border-radius: $diameter / 2;
+    background-color: blue;
+    color: $red;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.2s ease-in;
+  
+    &:hover {
+      box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  %text-shadow {
+    color: white;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    li {
+      display: inline-block;
+    }
+  }
+  
+  nav {
+    padding: 0 2rem 0 2rem;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    @extend %text-shadow;
+    h1 {
+      font-style: italic;
+    }
+    .social-icons {
+      @include flex(right);
+      ul {
+        li {
+          margin: 0 0.5rem 0 0.5rem;
+  
+          i {
+            &:hover {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .container {
+    height: 90vh;
+    text-align: center;
+    @include flex(center);
+    flex-direction: column;
+    text-transform: uppercase;
+    color: blue;
+  
+    div {
+      padding: 0.5em 0 0.5em 0;
+    }
+  
+    .timer {
+      height: 320px;
+      width: 320px;
+      position: relative;
+      cursor: pointer;
+  
+      .reset-btn {
+        position: absolute;
+        right: 0;
+        bottom: 40px;
+      }
+  
+      .current-state {
+        padding: 0;
+        margin-top: 50px;
+      }
+  
+      .time {
+        font-size: 72px;
+      }
+  
+      .timer-svg {
+        width: 300px;
+        height: 300px;
+        transform: rotateZ(-90deg) rotateX(180deg);
+        display: block;
+        z-index: -1;
+  
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+  
+        #svg circle {
+          stroke-dashoffset: 0;
+          stroke: gray;
+          stroke-width: 0.5em;
+        }
+  
+        #svg #bar {
+          stroke: blue;
+        }
+      }
+  
+      button {
+        .fa {
+          font-size: xx-large;
+          width: 32px;
+        }
+      }
+    }
+  
+    .controls {
+      ul {
+        @include flex(center);
+        margin-top: 1em;
+  
+        li {
+          width: 150px;
+          button {
+            width: 120px;
+            height: 30px;
+            padding: 0.5em;
+            background-color: white;
+            color: $red;
+            font-size: small;
+            text-transform: uppercase;
+            border-radius: 15px;
+            box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
+    }
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+  
+    &:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+  }
+  
+  .fa {
+    font-size: x-large;
+  }
+  
+  @media screen and (max-width: $med) {
+    .social-icons {
+      display: none !important;
+    }
+  }
+  
+  @media screen and (max-width: $small) {
+    .container {
+      .controls {
+        ul {
+          margin-top: 2.5em;
+          li {
+            width: 120px;
+            button {
+              @include circle(90px);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media screen and (min-width: $large) {
+    .container {
+      flex-direction: row;
+  
+      .timer {
+        flex: 6;
+  
+        .timer-svg {
+          position: absolute;
+          #svg {
+            transform: scale(1.5);
+          }
+        }
+  
+        .reset-btn {
+          @include circle(3em);
+          right: auto;
+          bottom: -20px;
+          margin-left: 180px;
+        }
+      }
+  
+      .controls {
+        flex: 4;
+  
+        ul {
+          flex-direction: column;
+          align-items: left;
+  
+          li {
+            margin-top: 1em;
+  
+            button {
+              @include circle(120px);
+              font-size: 1em;
+              padding: 0 1em 0 1em;
+            }
+  
+            &:nth-child(odd) {
+              margin-left: 5em;
+            }
+          }
+  
+        }
+      }
+  
+    }
+  }
+  

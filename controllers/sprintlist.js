@@ -4,7 +4,7 @@ const router = express.Router();
 const sprintlist = require('../models/sprintlist');
 
 
-//GET HTTP method to /bucketlist
+
 router.get('/', (req, res) => {
     sprintlist.getAllLists((err, lists) => {
         if (err) {

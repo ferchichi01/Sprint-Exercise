@@ -1,47 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<app-about></app-about>
+<main>
+  <router-outlet></router-outlet>
 
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Sprint</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a routerLink="/sprints" routerLinkActive="active">
-                        <span class="glyphicon glyphicon-log-in"></span> Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="jumbotron" style="width: 400px">
-            <h1 style="margin-bottom: 1em;">About</h1>
-            <p style="margin-bottom: 1em;">Sprint is a minimalist desktop time management application inspired by the
-                <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">Pomodoro Technique</a>. </p>
-            <p style="margin-bottom: 1em;">Choose a sprint length, enter a brief description of the activity, and get things done.</p>
-            <p style="margin-bottom: 1em;">Preferred browser:
-                <a href="https://www.google.com/chrome/">Chrome</a>. </p>
-            <p>
-                <span style="text-decoration: underline; cursor: pointer">Terms and conditions</span>. </p>
-        </div>
-        <router-outlet></router-outlet>
-
-    </div>
-
-</body>
-
-</html>
+  <!--<app-sprint></app-sprint>-->
+</main>
 

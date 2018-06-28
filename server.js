@@ -8,7 +8,7 @@ const config = require('./config/database');
 const sprintlist = require('./controllers/sprintlist');
 
 // Connect mongoose to our database
-mongoose.connect(config.database);
+mongoose.connection.openUri(config.database);
 
 
 

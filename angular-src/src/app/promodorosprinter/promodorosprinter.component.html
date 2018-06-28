@@ -1,0 +1,24 @@
+
+  <div class="container">
+      <div class="timer">
+          <div class="timer-svg">
+              <svg id="svg" width="300" height="300" viewPort="0 0 100 100">
+                  <circle #bar id="bar" r="135" cx="150" cy="150" fill="transparent" stroke-dasharray="848.23"
+                          stroke-dashoffset="0"></circle>
+              </svg>
+          </div>
+          <div class="current-state">{{ currentStateName }}</div>
+          <div class="time">{{ time | minuteSeconds }}</div>         
+      </div>
+      <div class="controls">
+          <ul>
+              <li>
+                  <button (click)="togglePause()">Pause/Play</button>
+              </li>
+              <li>
+                  <button (click)="setTimerToZero(0)" routerLink ='/sprints'>Cancel</button>
+              </li>
+             
+          </ul>
+
+  </div>
