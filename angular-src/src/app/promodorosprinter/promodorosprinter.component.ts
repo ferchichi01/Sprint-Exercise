@@ -5,11 +5,6 @@ import { Http } from '@angular/http';
 import { SprintListService } from '../services/sprint-list.service';
 import { ISprintList } from '../models/SprintList';
 
-import { getDate } from 'ngx-bootstrap/chronos/utils/date-getters';
-import { ViewPastSprintComponent } from '../view-past-sprint/view-past-sprint.component';
-import { YEAR, MONTH } from 'ngx-bootstrap/chronos/units/constants';
-
-
 @Component({
   selector: 'app-promodorosprinter',
   templateUrl: './promodorosprinter.component.html',
@@ -18,7 +13,7 @@ import { YEAR, MONTH } from 'ngx-bootstrap/chronos/units/constants';
 export class PromodorosprinterComponent implements OnInit {
 
   private newISprintList: ISprintList;
-  private sprintlists: ISprintList[] = [];
+  
   @Output() addList: EventEmitter<ISprintList> = new EventEmitter<ISprintList>();
 
   @ViewChild('bar') bar: ElementRef;
@@ -61,9 +56,6 @@ export class PromodorosprinterComponent implements OnInit {
 
   }
 
- 
-
-
   ngOnInit() {
 
     this.username = this.username = localStorage.getItem('user');
@@ -76,9 +68,6 @@ export class PromodorosprinterComponent implements OnInit {
 
     this.pushNotifications.requestPermission();
     this.startFocus(this.length);
-
-
-
 
   }
 
@@ -98,13 +87,16 @@ export class PromodorosprinterComponent implements OnInit {
 
       });
   }
-  
+
   public onSubmit() {
 
     this.sprintlistServ.addList(this.newISprintList).subscribe(
       response => {
-        if (response.success == true)
+        if (response.success == true){
           this.addList.emit(this.newISprintList);
+          this.router.navigate(['/sprints']);          
+        }        
+
       },
     );
 
@@ -136,7 +128,7 @@ export class PromodorosprinterComponent implements OnInit {
         name: this.length,
         duration: "25mn",
         status: "Cancelled",
-        progress: this.time.toString(),
+        progress: this.currentState.toString(),
         description: this.desc,
         notify: false,
         user: this.username,
@@ -145,7 +137,7 @@ export class PromodorosprinterComponent implements OnInit {
         finishedAt: new Date(Date.now())
       }
       this.onSubmit();
-      this.router.navigate(['/sprints']);
+      
 
 
     }
@@ -211,10 +203,8 @@ export class PromodorosprinterComponent implements OnInit {
               startedAt: this.startdate,
               finishedAt: new Date(Date.now())
             }
-            this.onSubmit();
-            
-            this.router.navigate(['/sprints']);
-            
+            this.onSubmit();       
+                  
 
           }
           this.time -= 1;
