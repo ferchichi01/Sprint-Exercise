@@ -14,7 +14,9 @@ import { PromodorosprinterComponent } from './promodorosprinter/promodorosprinte
 import { AboutComponent } from './about/about.component';
 import { MinuteSecondsPipe } from './minute-seconds.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
+import { Ng2OrderModule } from 'ng2-order-pipe'; //importing the module
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PaginationModule.forRoot(),
     TabsModule.forRoot(),
     PushNotificationsModule,
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule//add here
   ],
   providers: [SprintListService],
   bootstrap: [AppComponent]

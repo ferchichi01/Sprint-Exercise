@@ -4,7 +4,7 @@
     <tab heading="Pasts Sprint">
 
       <div class="inputSearch">
-        <input type="text" class="form-control" placeholder="Filter by length, status, date or description">
+        <input class="form-control" type="text" name="search" [(ngModel)]="filter">
       </div>
       <div class="row grid-container">
         <div class="col-md-10">
@@ -13,69 +13,41 @@
           <table class="table table-hover table-responsive-md mb-0">
             <thead>
               <tr class="align-center">
-                <th>Length</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Start</th>
-                <th>Finish</th>
-                <th>Description</th>
+                <th (click)="sort('length')">Length
+                  <span class="glyphicon sort-icon" *ngIf="key =='length'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('status')">Status
+                  <span class="glyphicon sort-icon" *ngIf="key =='status'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('date')">Date
+                  <span class="glyphicon sort-icon" *ngIf="key =='date'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('start')">Start
+                  <span class="glyphicon sort-icon" *ngIf="key =='start'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('finish')">Finish
+                  <span class="glyphicon sort-icon" *ngIf="key =='finish'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('description')">Description
+                  <span class="glyphicon sort-icon" *ngIf="key =='description'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let list of sprintlists">
+              <tr *ngFor="let list of sprintlists | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 5, currentPage: p }; let name = index">
                 <td>{{list.name}}</td>
                 <td>{{list.status}}</td>
                 <td>{{list.createdAt}}</td>
                 <td>{{list.startedAt}}</td>
                 <td>{{list.finishedAt}}</td>
                 <td>{{list.description}}</td>
-
               </tr>
             </tbody>
-
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </table>
 
         </div>
-        <div class="d-flex justify-content-center">
-
-            <!--Pagination -->
-            <nav class="my-4 pt-2">
-                <ul class="pagination pagination-circle pg-purple mb-0">
-    
-                    <!--First-->
-                    <li class="page-item disabled clearfix d-none d-md-block"><a class="page-link">First</a></li>
-    
-                    <!--Arrow left-->
-                    <li class="page-item disabled">
-                        <a class="page-link" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    </li>
-    
-                    <!--Numbers-->
-                    <li class="page-item active"><a class="page-link">1</a></li>
-                    <li class="page-item"><a class="page-link">2</a></li>
-                    <li class="page-item"><a class="page-link">3</a></li>
-                    <li class="page-item"><a class="page-link">4</a></li>
-                    <li class="page-item"><a class="page-link">5</a></li>
-    
-                    <!--Arrow right-->
-                    <li class="page-item">
-                        <a class="page-link" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                    </li>
-    
-                    <!--First-->
-                    <li class="page-item clearfix d-none d-md-block"><a class="page-link">Last</a></li>
-    
-                </ul>
-            </nav>
-            <!--/Pagination -->
-    
-        </div>
+        
       </div>
       <div class="button-delete">
         <button type="button" class="button-content" (click)="deleteList(); $event.stopPropagation();">Delete All</button>

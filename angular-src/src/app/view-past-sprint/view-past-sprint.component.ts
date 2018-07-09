@@ -19,6 +19,10 @@ export class ViewPastSprintComponent implements OnInit {
   bigCurrentPage = 1;
   public selectedValue: any = '' ;
   username = '';
+  key: string = 'name'; //set default
+  reverse: boolean = false;
+  p: number = 1;
+
 
   sprints =  [
     {value:  '5',  viewValue:  'Instant(5s)'},
@@ -67,5 +71,8 @@ export class ViewPastSprintComponent implements OnInit {
     this.sprintlistServ.deleteList().subscribe(
       response =>    this.sprintlists = response,)
     }
-
+    sort(key){
+      this.key = key;
+      this.reverse = !this.reverse;
+    }
 }
