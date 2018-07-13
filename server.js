@@ -39,11 +39,11 @@ app.get('/', (req,res) => {
 })
 
 //Routing all HTTP requests to /sprintlist to sprintlist controller
-
+app.use('/sprintlist',sprintlist);
 
 //swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/sprintlist',sprintlist);
+
 //app.use('/', router);
 
 //Listen to port 3000
