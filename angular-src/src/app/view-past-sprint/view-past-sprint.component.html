@@ -82,8 +82,8 @@
               <textarea class="form-control" ngModel #title="ngModel" name="description" required></textarea>
               <small id="emailHelp" class="form-text text-muted">What will you be doing</small>
               <div class="form-check my-4">
-                <input class="form-check-input" type="checkbox" id="defaultCheck12">
-                <label for="defaultCheck12" class="grey-text">Notify when completed</label>
+                <input [(ngModel)]="notify" name="notify" class="form-check-input" type="checkbox" id="notify">
+                <label for="notify" class="grey-text">Notify when completed</label>
               </div>
             </div>
 

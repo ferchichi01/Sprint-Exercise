@@ -19,3 +19,6 @@ ng serve
 
 Run `npm start` to get this started!
 
+
+Api documentation can be found on: `http://localhost:3000/api-docs`
+

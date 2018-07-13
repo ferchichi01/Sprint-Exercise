@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { PushNotificationsService } from 'ng-push';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
+import { PushNotificationsService, PushNotificationsModule } from 'ng-push';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { SprintListService } from '../services/sprint-list.service';
@@ -29,14 +29,23 @@ export class PromodorosprinterComponent implements OnInit {
   public currentState: number;
   public currentStateName: string;
 
-  public shortBreakTime: number;
-  public longBreakTime: number;
+  
+  
   public focusTime: number;
   public createdate: Date = new Date();
   public startdate: Date = new Date();
-
+  finished: Date = new Date();
+  radius = 54;
+  circumference = 2 * Math.PI * this.radius;
+  dashoffset: number;
+  percentage: number = 0;
+  curPerc: string = this.percentage + ' %';
+  
   length: any = '';
   desc: any = '';
+  notified: boolean = false;
+  showModal = 'none';
+  showFinalModal = 'none';
 
   constructor(private pushNotifications: PushNotificationsService,
     private routeActive: ActivatedRoute,
@@ -53,6 +62,7 @@ export class PromodorosprinterComponent implements OnInit {
 
     this.currentState = 0;
     this.currentStateName = 'set timer';
+    this.progress(0);
 
   }
 
@@ -64,13 +74,21 @@ export class PromodorosprinterComponent implements OnInit {
     this.routeActive.queryParams.subscribe(params => {
       this.length = params['length'];
       this.desc = params['description'];
+      this.notified= params['notify']==='true';
     });
 
     this.pushNotifications.requestPermission();
     this.startFocus(this.length);
 
   }
+  private progress(value: number) {
+    const progress = value / 100;
+    this.dashoffset = this.circumference * (1 - progress);
+  }
 
+  showFinalMessage(){
+    this.showFinalModal = 'block';    
+  }
 
   notify() {
     const options = {
@@ -136,6 +154,11 @@ export class PromodorosprinterComponent implements OnInit {
         startedAt: this.startdate,
         finishedAt: new Date(Date.now())
       }
+      this.finished = new Date(Date.now());
+      this.showFinalMessage(); 
+      if(this.notified){        
+        this.notify();
+      }
       this.onSubmit();
       
 
@@ -182,6 +205,11 @@ export class PromodorosprinterComponent implements OnInit {
       this.timer();
     }
   }
+  ok(){
+    this.showFinalModal = 'none';  
+    this.router.navigate(['/sprints']);   
+    
+  }
 
   public timer() {
     if (this.time > 0 && !this.pause) {
@@ -203,6 +231,8 @@ export class PromodorosprinterComponent implements OnInit {
               startedAt: this.startdate,
               finishedAt: new Date(Date.now())
             }
+            this.finished = new Date(Date.now());
+
             this.onSubmit();       
                   
 

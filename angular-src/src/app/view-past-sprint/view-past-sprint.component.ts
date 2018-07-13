@@ -44,7 +44,7 @@ export class ViewPastSprintComponent implements OnInit {
     console.log(this.selectedValue);
       console.log(_form.value);
       const NavigationExtras:  NavigationExtras = {
-      queryParams :  {'description' : _form.value.description , 'length' : _form.value.length },
+      queryParams :  {'description' : _form.value.description , 'length' : _form.value.length, 'notify': _form.value.notify},
       fragment : 'anchor'
       };
      this.router.navigate(['/spinner'] , NavigationExtras);

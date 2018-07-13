@@ -21,7 +21,8 @@
     "cors": "~2.8.3",
     "express": "~4.15.3",
     "mongoose": "~4.11.0",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "swagger-ui-express": "^3.0.10"
   },
   "homepage": "https://github.com/ferchichi01/Sprint-Exercise#readme"
 }

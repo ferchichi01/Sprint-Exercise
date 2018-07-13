@@ -1,0 +1,141 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Yet Another Node.js Blogg Application API",
+        "description": "Yet Another Node.js Blogg Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Sprintlists",
+            "description": "API for sprintlists in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/sprintlist": {
+            "post": {
+                "tags": [
+                    "Sprintlists"
+                ],
+                "description": "Create new sprint in system",
+                "parameters": [
+                    {
+                        "name": "sprint",
+                        "in": "body",
+                        "description": "Sprint that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Sprintlist"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New sprint is created",
+                        "schema": {
+                            "$ref": "#/definitions/Sprintlist"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Sprintlists"
+                ],
+                "summary": "Get all sprints in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Sprintlists"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Sprintlists"
+                ],
+                "summary": "delete all sprints in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Sprintlists"
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
+    "definitions": {
+        "Sprintlist": {
+            "required": [
+                "name",
+                "duration",
+                "status",
+                "progress",
+                "description",
+                "notify",
+                "user",
+                "createdAt",
+                "startedAt",
+                "finishedAt"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "duration": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "progress": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "notify": {
+                    "type": "boolean"
+                },
+                "user": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "finishedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "Sprintlists": {
+            "type": "array",
+            "$ref": "#/definitions/Sprintlist"
+        }
+    }
+}
